@@ -244,7 +244,7 @@ fn generate_features(
 
     // Flash sizes
     let mut flash_sizes = mcu_flash_size_map.keys().collect::<Vec<_>>();
-    flash_sizes.sort();
+    flash_sizes.sort_by_key(|s| s.parse::<u32>().unwrap());
     println!("# Features based on Flash size (in kbytes)");
     for size in flash_sizes {
         println!("{} = []", flash_size_to_feature(*size));
@@ -253,7 +253,7 @@ fn generate_features(
 
     // RAM sizes
     let mut ram_sizes = mcu_ram_size_map.keys().collect::<Vec<_>>();
-    ram_sizes.sort();
+    ram_sizes.sort_by_key(|s| s.parse::<u32>().unwrap());
     println!("# Features based on RAM size (in kbytes)");
     for size in ram_sizes {
         println!("{} = []", ram_size_to_feature(*size));
